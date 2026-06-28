@@ -1,9 +1,7 @@
 name: terraform deploy
 
 on:
-  # push:
-  #   branches: [ main ]
-  workflow_dispatch:   # ✅ manual trigger only
+  workflow_dispatch:
 
 jobs:
   terraform:
@@ -31,4 +29,5 @@ jobs:
         run: terraform plan -out=tfplan
 
       - name: Terraform Apply
+        environment: staging   # Approval required here
         run: terraform apply -auto-approve tfplan
