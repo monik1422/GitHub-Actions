@@ -3,15 +3,12 @@ resource "aws_vpc" "name" {
     tags = {
       Name = "cicd_vpc"
     }
-  
 }
-
 
 resource "aws_subnet" "name2" {
     vpc_id = aws_vpc.name.id
     cidr_block = "10.0.0.0/25"
     tags = {
       Name = "cicd_subnet"
-    }
-  
+    }  
 }
