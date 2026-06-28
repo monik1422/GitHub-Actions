@@ -1,12 +1,11 @@
-provider "aws" {
-  
+provider "aws" {  
 }
 
 terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = ">4.0" #morthan 4.0 version
+      version = ">6.0" #morthan 6.0 version
     }
   }
 }
