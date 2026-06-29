@@ -13,8 +13,6 @@ jobs:
   terraform:
     runs-on: self-hosted
 
-    environment: staging
-
     steps:
       - uses: actions/checkout@v4
 
@@ -26,12 +24,22 @@ jobs:
       - name: Verify AWS Identity
         run: aws sts get-caller-identity
 
-      - uses: hashicorp/setup-terraform@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
 
-      - run: terraform init
+      - name: Verify Terraform
+        run: terraform version
 
-      - run: terraform validate
+      - name: Terraform Init
+        run: terraform init
 
-      - run: terraform plan -out=tfplan
+      - name: Terraform Validate
+        run: terraform validate
 
-      - run: terraform apply -auto-approve tfplan
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
